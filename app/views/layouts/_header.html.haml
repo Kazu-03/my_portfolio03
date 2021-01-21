@@ -6,7 +6,8 @@
       .nav
         %ul.listsleft
           %li.listsleft__item--first
-            .listsleft__item--icon-b TechBlog
+            .listsleft__item--icon-b 
+              =link_to "TechBlog",blogs_path, class: "blog" 
           %li.listsleft__item--second Works
           %li.listsleft__item--last About
             

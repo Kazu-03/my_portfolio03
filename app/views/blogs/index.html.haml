@@ -9,12 +9,12 @@
   %section.Middle
     %h2.blogs TechBlog
     .blogbox 
-      - @blogs.each do |blog|
-        %p.blogdiary
-          =blog.created_at.strftime('%Y/%m/%d')
-        = link_to blog_path(blog.id), method: :get do
-          %p.blogtitle
-            = blog.title
+      -# - @blogs.each do |blog|
+      -#   %p.blogdiary
+      -#     =blog.created_at.strftime('%Y/%m/%d')
+      -#   = link_to blog_path(blog.id), method: :get do
+      -#     %p.blogtitle
+      -#       = blog.title
     .contentbox
       .work-img
         -# =link_to works_path, class:"works" do
