@@ -10,4 +10,9 @@
               =link_to "TechBlog",blogs_path, class: "blog" 
           %li.listsleft__item--second Works
           %li.listsleft__item--last About
+        %ul.listsRight
+          %li.listsRight__item--login
+            =link_to "ログイン", new_user_session_path, class: "login"
+          %li.listsRight__item--new
+            =link_to "新規会員登録", new_user_registration_path, class: "new"
             
