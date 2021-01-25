@@ -3,13 +3,27 @@
     .mainheader
       %h1.icon 
         =link_to "Myportfolio" ,root_path 
+    - if user_signed_in?
       .nav
         %ul.listsleft
           %li.listsleft__item--first
             .listsleft__item--icon-b 
-              =link_to "TechBlog",blogs_path, class: "blog" 
-          %li.listsleft__item--second Works
-          %li.listsleft__item--last About
+              =link_to "投稿する",new_blog_path, class: "blog-post" 
+        %ul.listsRight
+          %li.listsRight__item--nickname
+            ようこそ、
+            = current_user.nickname
+            さん
+          %li.listsRight__item--login
+            = link_to "マイページ", user_path(current_user.id), class: "login"
+          %li.listsRight__item--new
+            = link_to "ログアウト", destroy_user_session_path, method: :get, class:'logout__btn'
+    - else
+      .nav
+        %ul.listsleft
+          %li.listsleft__item--first
+            .listsleft__item--icon-b 
+              =link_to "投稿する",new_user_registration_path, class: "blog-post" 
         %ul.listsRight
           %li.listsRight__item--login
             =link_to "ログイン", new_user_session_path, class: "login"

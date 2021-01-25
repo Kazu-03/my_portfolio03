@@ -1,0 +1,28 @@
+.userheader
+  .headerInner
+    .mainheader
+      %h1.icon 
+        =link_to "Myportfolio" ,root_path 
+      .searchForm
+        = form_with(class: "seach-form") do |f|
+          = f.text_field :keyword, placeholder:"キーワードから検索する", class: "search-input"
+          %button.search-btn
+            = icon("fas","search")
+
+.user_profile
+  .user_profile_image
+    -# = image_tag "#", class: "user_profile_image-icon"
+  .user_profile_name
+    = current_user.nickname
+  .user_profile_blogs
+    .user_profile_blogs-count 記事数
+    = @blogs.count
+
+.user_blogs
+  .user_blogBox
+    - @blogs.each do |blog|
+      %p.blogdiary
+        =blog.created_at.strftime('%Y/%m/%d')
+      = link_to blog_path(blog.id), method: :get do
+        %p.blogtitle
+          = blog.title

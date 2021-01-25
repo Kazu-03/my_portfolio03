@@ -60,3 +60,5 @@ end
 gem 'haml-rails'
 gem 'font-awesome-sass'
 gem 'devise'
+gem 'carrierwave'
+gem 'mini_magick'

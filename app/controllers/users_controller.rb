@@ -3,6 +3,8 @@ class UsersController < ApplicationController
   end
 
   def show
+    @user = current_user
+    @blogs = Blog.all
   end
 
 end
