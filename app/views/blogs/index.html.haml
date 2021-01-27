@@ -8,6 +8,9 @@
       %p.content__text If you don't try, you won't succeed
   %section.Middle
     %h2.blogs TechBlog
+    = form_with url:  search_blogs_path,local:  true, method: :get, calss: "search_form" do |f|
+      = f.text_field :keyword, placeholder:"キーワードから検索する" , class:"input"
+      = f.button "検索", 　class:"search-btn" 
     .blogbox 
       - @blogs.each do |blog|
         %p.blogdiary
