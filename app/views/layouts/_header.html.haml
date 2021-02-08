@@ -7,11 +7,11 @@
       .nav
         %ul.listsleft
           %li.listsleft__item--first
-            .listsleft__item--icon-b 
+            .listsleft__item--icon
               =link_to "投稿する",new_blog_path, class: "blog-post" 
         %ul.listsRight
           %li.listsRight__item--nickname
-            ようこそ、
+            ようこそ
             = current_user.nickname
             さん
           %li.listsRight__item--login
