@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_25_134033) do
+ActiveRecord::Schema.define(version: 2021_02_11_065737) do
 
   create_table "blogs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title", null: false
@@ -25,6 +25,16 @@ ActiveRecord::Schema.define(version: 2021_01_25_134033) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["blog_id"], name: "index_images_on_blog_id"
+  end
+
+  create_table "posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "title", null: false, comment: "タイトル"
+    t.text "overview", null: false, comment: "概要"
+    t.string "target", null: false, comment: "対象"
+    t.string "method", null: false, comment: "方法"
+    t.string "reward", null: false, comment: "報酬"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|

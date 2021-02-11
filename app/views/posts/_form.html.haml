@@ -1,0 +1,46 @@
+= form_with model:@post, local: true do |f|
+  .form-wrappe
+    - if @post.errors.any?
+      #error_explanation
+        %h2= "#{pluralize(@post.errors.count, "error")} prohibited this post from being saved:"
+        %ul
+          - @post.errors.full_messages.each do |message|
+            %li= message
+    .form-item
+      .label 
+        =f.label :title 
+        .need-tag 必須
+      = f.text_field :title
+      .count
+        %p 0/80文字
+    .form-item
+      .label 
+        =f.label :overview 
+        .need-tag 必須
+      = f.text_field :overview
+      .count
+        %p 0/500文字
+    .form-item
+      .label 
+        =f.label :target 
+        .need-tag 必須
+      = f.text_field :target 
+      .count
+        %p 0/100文字
+    .form-item
+      .label 
+        =f.label :method 
+        .need-tag 必須
+      = f.text_field :method
+      .count
+        %p 0/100文字
+    .form-item
+      .label 
+        =f.label :reward 
+        .need-tag 必須
+      = f.text_field :reward
+      .count
+        %p 0/100文字
+
+    .actions
+      = f.submit '投稿する', class:"btn"

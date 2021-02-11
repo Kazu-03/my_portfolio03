@@ -3,3 +3,84 @@
 @import "header";
 @import "new";
 @import "show";
+
+a {
+  text-decoration: none;
+  transition: 0.6s ;
+}
+
+a:hover {
+  opacity: 0.5;
+  color: initial;
+  background-color: initial;
+}
+
+.btn {
+  font-size: 1.0rem;
+  background: #E7E6E6;
+  border-radius: 5px;
+  max-width: 360px;
+  width: 60vw;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 2px 2px 8px -2px grey;
+  border: 1px solid #cccaca;
+  margin: auto;
+}
+
+.form-wrapper {
+  margin: 120px 0;
+.form-item {
+  max-width: 650px;
+  width: 90vw;
+  margin: 20px auto;
+
+  .label {
+    display: table-cell;
+    padding: 0 5px;
+
+    label {
+      display: inline-block;
+    }
+
+    .need-tag {
+      background-color: red;
+      background: #FF0000;
+      border-radius: 3px;
+      width: 45px;
+      padding: 3px 0;
+      color: white;
+      display: inline-block;
+    }
+  }
+
+  input, textarea, select {
+    max-width: 650px;
+    width: 90vw;
+    background: #F0F0F0;
+    border: 1px solid #C2C2C2;
+    box-sizing: border-box;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.09);
+    border-radius: 5px;
+    margin: 5px 0;
+    padding: 5px;
+  }
+
+  input, select {
+    height: 36px;
+  }
+
+  .count {
+    position: relative;
+    right: 1.5%;
+    bottom: 3px;
+    font-size: 0.5rem;
+    text-align: right;
+    p {
+      display: contents;
+    }
+  }
+}
+}
