@@ -10,7 +10,7 @@ class BlogsController < ApplicationController
   end
 
   def create
-    @blog = Blog.create!(blog_params)
+    @blog = Blog.new(blog_params)
     if @blog.save
       redirect_to root_path, notice: '記事が投稿されました。'
     else

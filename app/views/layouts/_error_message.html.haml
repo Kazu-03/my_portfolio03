@@ -1,8 +1,8 @@
--if model.errors.any? 
+-if @blog.errors.any? 
   .alert
     %ul
       エラーが
-      =model.errors.count
+      =@blog.errors.count
       件あります
-      -model.errors.full_messages.each do |message| 
+      -@blog.errors.full_messages.each do |message| 
         %li= message
