@@ -1,0 +1,8 @@
+-if @blog.errors.any? 
+  .alert
+    %ul
+      エラーが
+      =@blog.errors.count
+      件あります
+      -@blog.errors.full_messages.each do |message| 
+        %li= message
