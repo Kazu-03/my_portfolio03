@@ -71,4 +71,14 @@ class PostsController < ApplicationController
     def post_params
       params.fetch(:post, {})
     end
+
+    def slack_txt_template post
+      "[投稿]しました | #{Rails.env}
+      title: #{post.title}
+      overview: #{post.overview}
+      target: #{post.target}
+      manner: #{post.manner}
+      reward: #{post.reward}
+      introduction: #{post.introductio}"
+    end
 end

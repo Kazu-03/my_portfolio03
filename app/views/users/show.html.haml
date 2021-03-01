@@ -18,6 +18,7 @@
     .user_profile_blogs-count 記事数
     = @blogs.count
 
+- if @blogs.user_id .present?
 .user_blogs
   .user_blogBox
     - @blogs.each do |blog|
@@ -26,3 +27,5 @@
       = link_to blog_path(blog.id), method: :get do
         %p.blogtitle
           = blog.title
+
+             
