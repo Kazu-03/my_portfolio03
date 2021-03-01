@@ -4,6 +4,7 @@ class UsersController < ApplicationController
 
   def show
     @user = current_user
+    @blogs = Blog.find(params[:id])
     @blogs = Blog.all
   end
 
