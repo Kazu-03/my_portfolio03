@@ -49,4 +49,10 @@ class BlogsController < ApplicationController
   def blog_params
     params.require(:blog).permit(:title, :detatil, images_attributes:[:src])
   end
+
+  def slack_txt_template post
+    "[投稿]しました | #{Rails.env}
+    title: #{post.title}
+    detatil: #{post.detatil}"
+  end
 end
