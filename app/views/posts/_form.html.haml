@@ -44,3 +44,96 @@
 
     .actions
       = f.submit '投稿する', class:"btn"
+
+= form_with(model: post, local: true) do |form| %>
+ <div class="form-wrapper post">
+    <%# if post.errors.any? %>
+<!--      <div id="error_explanation">-->
+<!--        <ul>-->
+          <%# post.errors.full_messages.each do |message| %>
+<!--            <li><%#= message %></li>-->
+          <%# end %>
+<!--        </ul>-->
+<!--      </div>-->
+    <%# end %>
+
+    <div class="form-item <%= post.errors[:title].blank? ? '' : 'model_err' %>">
+      <div class="label">
+        <%= form.label :title , 'タイトル' %>
+        <div class="need-tag">
+          必須
+        </div>
+      </div>
+      <%= form.text_field :title, id: 'title' %>
+      <div class="count"><p>0</p>/<small>80</small>文字</div>
+    </div>
+
+    <div class="form-item <%= post.errors[:overview].blank? ? '' : 'model_err' %>">
+      <div class="label">
+        <%= form.label :overview , '概要' %>
+        <div class="need-tag">
+          必須
+        </div>
+      </div>
+      <%= form.text_area :overview, rows: '5', id: 'overview' %>
+      <div class="count"><p>0</p>/<small>500</small>文字</div>
+    </div>
+
+    <div class="form-item <%= post.errors[:target].blank? ? '' : 'model_err' %>">
+      <div class="label">
+        <%= form.label :target , '対象' %>
+        <div class="need-tag">
+          必須
+        </div>
+      </div>
+      <%= form.text_field :target, id: 'target' %>
+      <div class="count"><p>0</p>/<small>100</small>文字</div>
+    </div>
+
+    <div class="form-item <%= post.errors[:manner].blank? ? '' : 'model_err' %>">
+      <div class="label">
+        <%= form.label :manner , '方法' %>
+        <div class="need-tag">
+          必須
+        </div>
+      </div>
+      <%= form.text_field :manner, id: 'manner' %>
+      <div class="count"><p>0</p>/<small>100</small>文字</div>
+    </div>
+
+    <div class="form-item <%= post.errors[:reward].blank? ? '' : 'model_err' %>">
+      <div class="label">
+        <%= form.label :reward , '報酬' %>
+        <div class="need-tag">
+          必須
+        </div>
+      </div>
+      <%= form.text_field :reward, id: 'reward' %>
+      <div class="count"><p>0</p>/<small>100</small>文字</div>
+    </div>
+
+    <div class="form-item <%= post.errors[:pre_questions].blank? ? '' : 'model_err' %>" id="detail-association-insertion-point">
+      <%= form.fields_for :pre_questions, local: true do |pre_question_form| %>
+        <div class="label">
+          <%= pre_question_form.label :question , '事前質問' %>
+        </div>
+        <%= render 'pre_question_fields', f: pre_question_form %>
+      <% end %>
+    </div>
+
+    <div class="links">
+      <%= link_to_add_association '質問を追加', form, :pre_questions,
+                                  class: 'small-btn',
+                                  data: {
+                                      association_insertion_node: '#detail-association-insertion-point',
+                                      association_insertion_method: 'append'
+                                  }
+      %>
+    </div>
+
+  </div>
+
+  <div class="actions">
+    <%= form.submit '投稿する', class: 'btn', disabled: true %>
+  </div>
+<% end %>
