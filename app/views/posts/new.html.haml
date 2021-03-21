@@ -1,4 +1,189 @@
 %section.posts-section
   %h2 検証事項フォーム
+  <section id="modalArea" class="modalArea">
+  <div id="modalBg" class="modalBg"></div>
+  <div class="modalWrapper">
+    <div class="modalContents">
+      <h1><%= post.title %></h1>
+
+      <div class="modal-content-wrapper">
+        <h3>概要</h3>
+        <p><%= post.overview %></p>
+        <h3>対象</h3>
+        <p><%= post.target %></p>
+        <h3>方法</h3>
+        <p><%= post.manner %></p>
+        <h3>お礼</h3>
+        <p><%= post.reward %></p>
+        <h3>事前質問</h3>
+        <p><%= post.pre_questions.blank? ? 'なし' : pre_questions_template(post.pre_questions) %></p>
+      </div>
+
+      <% if current_user %>
+        <% if post_apply.new_record? %>
+          <%= form_with(model: post_apply, local: true) do |form| %>
+            <div class="form-wrapper post_apply">
+              <div class="form-item <%= post_apply.errors[:introduction].blank? ? '' : 'model_err' %>">
+                <div class="label">
+                  <%= form.label :introduction , '簡単な自己紹介' %>
+                  <div class="need-tag">
+                    必須
+                  </div>
+                </div>
+                <p>・消さずに追記してください</p>
+                <%= form.text_area :introduction, rows: '8', id: 'introduction', value: introduction_and_question_template(post.question) %>
+              </div>
+
+              <div class="form-item <%= post_apply.errors['answers'].blank? ? '' : 'model_err' %>">
+                <div class="label">
+                  <%= form.label '事前質問への回答' %>
+                  <div class="need-tag">
+                    必須
+                  </div>
+                </div>
+                <p>・事前質問にお答えください</p>
+                <% post_apply.post.pre_questions.each.with_index(1) do |pre_q, index| %>
+                  <%= index.to_s + '. ' + pre_q.question %>
+                  <%= form.fields_for :answers do |answer_form| %>
+                    <%= render 'answer_fields', answer_form: answer_form %>
+                  <% end %>
+                <% end %>
+              </div>
+
+              <div class="actions modal-btn">
+                <%= form.hidden_field :post_id, value: @post_apply.post_id %>
+                <%= form.submit 'ヒアリングに参加する', class: 'small-btn btn', disabled: true %>
+              </div>
+            </div>
+          <% end %>
+        <% else %>
+          <div class="actions modal-btn">
+            <%= link_to '応募済です', '#', class: 'small-btn' %>
+            <p><%= l post_apply.created_at, format: :long %></p>
+          </div>
+        <% end %>
+      <% else %>
+        <div class="actions modal-btn">
+          <%= link_to 'ヒアリングに参加する', '/auth/auth0', method: :post, class: 'small-btn', data: { confirm: "ログインが必要です" } %>
+        </div>
+      <% end %>
+
+    </div>
+    <div id="closeModal" class="closeModal">
+      ×
+    </div>
+  </div>
+</section>
+
+<style>
+    /* モーダルCSS */
+    .modalArea {
+        /*display: none;*/
+        position: fixed;
+        z-index: 10; /*サイトによってここの数値は調整 */
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .modalBg {
+        width: 100%;
+        height: 100%;
+        background-color: rgba(30,30,30,0.9);
+    }
+
+    .modalWrapper {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform:translate(-50%,-50%);
+        width: 90%;
+        max-width: 700px;
+        padding: 5vh 5vw;
+        background-color: #fff;
+        box-sizing: border-box;
+        box-shadow: 0px 8px 8px rgb(0 0 0 / 25%);
+        border-radius: 15px;
+        min-height: 75vh;
+        height: 50%;
+        overflow: auto;
+    }
+
+    .modal-content-wrapper {
+        margin: 5vh 0;
+    }
+
+    .modal-content-wrapper p {
+      white-space: pre-line;
+    }
+
+    .modalContents {
+        word-break: break-all;
+    }
+
+    .modalContents h1 {
+        line-height: normal;
+    }
+
+    .closeModal {
+        position: absolute;
+        top: 0.8rem;
+        right: 1rem;
+        cursor: pointer;
+        font-size: 1.5rem;
+    }
+
+    body.fixed {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        left: 0;
+    }
+
+    .modal-btn {
+        margin: 40px auto 20px;
+        text-align: center;
+    }
+
+    .small-btn {
+        font-size: 0.8rem;
+        background: #E7E6E6;
+        border-radius: 5px;
+        max-width: 300px;
+        width: 50vw;
+        height: 38px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 2px 2px 8px -2px grey;
+        border: none;
+        margin: auto;
+    }
+
+    /* 以下ボタンスタイル */
+    button {
+        padding: 10px;
+        background-color: #fff;
+        border: 1px solid #282828;
+        border-radius: 2px;
+        cursor: pointer;
+    }
+
+    .form-item {
+        width: 100%!important;
+    }
+
+    textarea {
+        width: 100%!important;
+    }
+
+    #openModal {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform:translate(-50%,-50%);
+    }
+</style>
 
   = render "posts/form"
