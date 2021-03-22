@@ -1,7 +1,7 @@
-%h1 Editing post
-
-= render 'form'
-
-= link_to 'Show', @post
-\|
-= link_to 'Back', posts_path
+<div class="nested-fields">
+  <%= f.text_area :question, rows: '3', id: "question", placeholder: 'ex)職業は何ですか？' %>
+  <div class="del-btn">
+    <%= link_to_remove_association '削除', f, class: 'small-btn' %>
+  </div>
+  <div class="count"><p>0</p>/<small>1000</small>文字</div>
+</div>
