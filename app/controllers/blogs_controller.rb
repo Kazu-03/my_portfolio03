@@ -40,6 +40,12 @@ class BlogsController < ApplicationController
     redirect_to root_path
   end
 
+  def search
+    if params [:keyword]
+    @ogp = photo = Unsplash::Photo.find("tAKXap853rY")
+    end
+  end
+
   private
 
   def set_blog
