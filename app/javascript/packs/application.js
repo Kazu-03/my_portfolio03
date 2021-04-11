@@ -107,6 +107,13 @@ $(document).on('turbolinks:load', function() {
                 nested_keyup_($(this));
             });
         });
+
+        $(function(){
+            $('#btn').on('click', function() {
+                var url = $('img_url').text();
+                $('#ogp').val(url);
+              });
+        });
     // post
 
     // common

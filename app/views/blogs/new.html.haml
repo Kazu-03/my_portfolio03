@@ -10,20 +10,11 @@
         .blog-text 記事
         = f.text_field :detatil, class: "text_field"
       .Exhibition-form
+        .unsplash
+          = photo = Unsplash::Photo.find("tAKXap853rY")
+          = image_tag photo.track_download , id:'url'
+          = button_tag '選択', type: 'button',id:'ogp'
         .image_field 画像
-        = f.fields_for :images do |image|
-          = image.file_field :src, class:"image_field"
-        -# .upload-box
-        -#   .upload-area
-        -#     .images_upload-box
-        -#       #images_upload
-        -#         .p_upload
-        -#           =icon('fas','camera')
-        -#   #image-box
-        -#     #previews
-        -#       -# 複数の別のリソースを同時に保存させる
-        -#       = f.fields_for :image do |image|
-        -#         .js-file_group{data: {index: image.index}} 
-        -#           = image.file_field :url, data:{ index: image.index }, class: 'js-file'
+        = f.text_field :ogp_image, id:'ogp'
       .Exhibition-btn
         = f.submit "投稿"
