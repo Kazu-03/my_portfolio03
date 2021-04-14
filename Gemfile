@@ -67,4 +67,5 @@ gem 'font-awesome-sass'
 gem 'devise'
 gem 'carrierwave'
 gem 'unsplash'
+gem "jquery-rails"
 gem 'mini_magick'
