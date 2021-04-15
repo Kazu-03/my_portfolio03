@@ -7,6 +7,7 @@ class BlogsController < ApplicationController
   def new
     @blog = Blog.new
     @blog.images.new
+    @search_results = Unsplash::Photo.search("s")
   end
 
   def create
