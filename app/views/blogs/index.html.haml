@@ -22,3 +22,11 @@
 
   .unsplash
     %button 選択
+  <div class="unsplash">
+      <%=text_field_tag("search_box", "",{placeholder: "unsplashから検索"}) %>
+      <%= button_tag '検索',type: 'button', id:'search_btn' %>
+      <% @search_results.each do |s_r| %>
+        <% url = s_r.track_download %>
+        <%= image_tag url %>
+        <%= url %>
+      <% end %>
